@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire{% endblock %}
+{% block body %}
+    <div style="max-width: 300px">
+        <h4>Modification d'un tweet</h4>
+        <div style="margin-top: 15px; margin-bottom: 15px">
+            {{ form_start(form) }}
+            {{ form_row(form.content, {
+                'label': false,
+                'attr': {'class': 'form-control'}
+            }) }}
+            {{ form_row(form.submit,{'attr': {'class': 'form-control'}}) }}
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tweet{% endblock %}
+
+{% block body %}
+    <div class="container" style="max-width: 500px">
+        <div style="max-width: 300px">
+            <h4>Création d'un tweet</h4>
+            <div style="margin-top: 15px; margin-bottom: 15px">
+                {{ form_start(form) }}
+                {{ form_row(form.content, {
+                    'label': false,
+                    'attr': {'class': 'form-control'}
+                }) }}
+                {{ form_row(form.submit,{'attr': {'class': 'form-control'}}) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div style="margin-bottom: 30px">
+            <h4>Liste de tweet</h4>
+            <a href="{{ path('tweet.new') }}" class="btn btn-primary">Crée un tweet</a>
+        </div>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for tweet in tweets %}
+            <div class="card"  style="margin-bottom: 15px">
+                <div class="card-header">
+                    date de creation : {{ tweet.createdAt|date("m/d/Y") }}
+
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">id #{{ tweet.id }}</h6>
+                    <p class="card-text">{{ tweet.content }}</p>
+                    <a href="{{ path('tweet.edit', { id: tweet.id}) }}" class="btn btn-info">Modifier</a>
+                    <a href="{{ path('tweet.delete', { id: tweet.id}) }}" class="btn btn-warning">Supprimer</a>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endblock %}

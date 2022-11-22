@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Single Tweet{% endblock %}
+{% block body %}
+    <div style="max-width: 300px">
+        <div class="card"  style="margin-bottom: 15px">
+            <div class="card-header">
+                date de creation : {{ tweet.createdAt|date("m/d/Y") }}
+            </div>
+            <div class="card-body">
+                <h6 class="card-title">id #{{ tweet.id }}</h6>
+                <p class="card-text">{{ tweet.content }}</p>
+                <a href="{{ path('tweet.edit', { id: tweet.id}) }}" class="btn btn-info">Modifier</a>
+                <a href="{{ path('tweet.delete', { id: tweet.id}) }}" class="btn btn-warning">Supprimer</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
